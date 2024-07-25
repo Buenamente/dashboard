@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="html.css">
+</head>
+<body>
+    <audio id="myAudio" autoplay >
+        <source src="assets/music.mp3" type="audio/mp3">
+
+    </audio
+>
+
+<div id="lyrics">
+    <p data-time="0" class="lyric-line">di maarte kahit dati pa Kumbaga sa makina, krudo lang ang ikarga</p>
+    <p data-time="4" class="lyric-line">Babyahe na minsan 'yung dala dala ko Saktong pamasahe lang</p>
+    <p data-time="7" class="lyric-line">Kulang-kulang pero nagagawa ko Pang diskartehan</p>
+    <p data-time="10" class="lyric-line">'Di bale nang magutom basta maka party langKahit 'yung ibang suot ko galing sa hiram</p>
+    <p data-time="15" class="lyric-line">Swabe lang kasi lagi laging happy happy langDito 'di ka para mailang, pwede makisama</p>
+    <p data-time="20" class="lyric-line">Tara makisali 'Di ka mananawa kahit gan'to lagi Sa bahay yugyugan masaya kang uuwi</p>
+    <p data-time="25" class="lyric-line">Iba-ibang tugtugan do'n palang alam Mong 'di ka lugi tenga mo bubusugin sa music</p>
+
+</div>
+    
+
+
+
+</body>
+<script src="html.js"></script>
+    <style>
+         #lyrics {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #976565;
+        }
+        .lyric-line {
+            display: none;
+        }
+        .lyric-line.active {
+            display: block;
+            color: red; /* Highlight the active line */
+        }
+    </style>
+    <script>
+         const audio = document.getElementById('myAudio');
+        const lyrics = document.querySelectorAll('.lyric-line');
+
+        audio.addEventListener('timeupdate', () => {
+            const currentTime = audio.currentTime;
+            lyrics.forEach(line => {
+                const time = parseFloat(line.getAttribute('data-time'));
+                if (currentTime >= time) {
+                    lyrics.forEach(lyric => lyric.classList.remove('active'));
+                    line.classList.add('active');
+                }
+            });
+        });
+    </script>
+</html>
